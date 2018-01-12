@@ -37,9 +37,17 @@ class BookShelves extends Component {
                 <div className='list-books-title'>
                     <h1>My Reads App</h1>
                 </div>
+
                 <div className='list-books-content'>
-                    {shelves.map( (shelf) => <BookShelf key={shelf.value} title={shelf.title} books={shelf.books}/>)}
-                </div>
+                    { shelves.map( (shelf) => {
+                        if(shelf.books.length > 0) {
+                            return <BookShelf key={shelf.value} title={shelf.title} books={shelf.books}/>
+                        }
+                        
+                        return '';
+                    })}
+                </div>               
+                
                 <div className='open-search'>
                     <Link to='/search'>Search Books</Link>
                 </div>
