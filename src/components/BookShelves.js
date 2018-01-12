@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 //TODO - See format code
 class BookShelves extends Component {
     static propTypes = {
-        books: PropTypes.array.isRequired
+        books: PropTypes.array.isRequired,
+        onUpdateBookShelf: PropTypes.func.isRequired
     };
     
     filterShelfBooks = (value) => { 
@@ -32,6 +33,8 @@ class BookShelves extends Component {
             }
         ];
         
+        const { onUpdateBookShelf } = this.props;
+
         return (
             <div className='list-books'>
                 <div className='list-books-title'>
@@ -41,7 +44,7 @@ class BookShelves extends Component {
                 <div className='list-books-content'>
                     { shelves.map( (shelf) => {
                         if(shelf.books.length > 0) {
-                            return <BookShelf key={shelf.value} title={shelf.title} books={shelf.books}/>
+                            return <BookShelf key={shelf.value} title={shelf.title} books={shelf.books} onUpdateBookShelf={onUpdateBookShelf}/>
                         }
                         
                         return '';
