@@ -1,1 +1,5 @@
-feat: Move books between shelves.
+test: Add BookShelves check to AppTest.
+
+Finally got the test up and running. 
+I was having a hard time to mock the getAll fetch needed to install:
+- npm i --save-dev jest-fetch-mock
