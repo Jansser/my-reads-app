@@ -3,7 +3,6 @@ import BookShelf from './BookShelf';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-//TODO - See format code
 class BookShelves extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,

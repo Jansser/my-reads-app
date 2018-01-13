@@ -10,38 +10,47 @@ import Loader from 'react-loaders';
 class App extends Component {
   state = {
     books: [],
+    query: '',
     loading: true
   }
 
   componentDidMount() {
-    //TODO - Error callback
     BooksAPI.getAll().then((books) => 
-    
       this.setState({ 
         books, 
         loading: false 
       }));
   }
-
-  //TODO - See automatic format code
   
   /*
    * Updates the Book shelf
    */
-  updateBookShelf = (book, shelf) => {
-    this.setState( { loading: true } );
+  updateBookShelf = (book, shelf) => {    
+    this.setState({ loading: true });
 
     BooksAPI.update(book, shelf).then( (response) => {
       book.shelf = shelf;
       
-      this.setState(state => ({ 
-        books: state.books,
-        loading: false 
+      BooksAPI.getAll().then((books) => 
+        this.setState({ 
+          books, 
+          loading: false 
       }));
+    }, (error) => {});
+  }
+
+  searchBooks = (query) => {
+    this.setState({ loading: true });
+
+    BooksAPI.search(query).then((response) => {
+      if(response.length) {
+        this.setState({ books: response, loading: false });
+      } else {
+        this.setState({ loading: false });
+      }
     }, (error) => {
-      //TODO - SHOW SOME NICE ERROR ALERT
-      console.log('error');
-    })
+      this.setState({ loading: false });
+    });
   }
 
   render() {
@@ -50,7 +59,7 @@ class App extends Component {
     return (
       <div className='app'>
         <Route exact path='/' render={() => (<BookShelves books={books} onUpdateBookShelf={ this.updateBookShelf }/>)} />
-        <Route exact path='/search' render={() => (<BookSearch />)} />
+        <Route exact path='/search' render={() => (<BookSearch onSearchBooks={ this.searchBooks } books={books} onUpdateBookShelf={ this.updateBookShelf }/>)} />
         <Loader type="pacman" active={loading} />
       </div>
     );

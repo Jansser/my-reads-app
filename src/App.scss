@@ -131,12 +131,13 @@ body, .app {
 .books-grid {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
 
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-}
+    width: 70%;
+}   
 
 .books-grid li {
     padding: 10px 15px;
@@ -216,7 +217,7 @@ body, .app {
 
 .loader-active {
     display: block;
-    position: absolute;
+    position: fixed;
     @include center-both-vertical-horizontal();
 }
 
