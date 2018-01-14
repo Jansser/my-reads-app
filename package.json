@@ -29,5 +29,10 @@
   "devDependencies": {
     "jest-fetch-mock": "^1.4.0",
     "jest-localstorage-mock": "^2.1.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "useTabs": true,
+    "bracketSpacing": false
   }
 }
