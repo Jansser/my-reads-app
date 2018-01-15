@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {shelves, noShelf} from '../utils/commonData';
 
 class Book extends Component {
 	static propTypes = {
@@ -16,7 +17,6 @@ class Book extends Component {
 	render() {
 		const {book} = this.props;
 
-		//TODO options on the select are the shelves. It's a commmon data. (DRY)
 		return (
 			<li>
 				<div className="book">
@@ -32,17 +32,23 @@ class Book extends Component {
 
 						<div className="book-shelf-changer">
 							<select value={book.shelf} onChange={this.handleChange}>
-								<option value="currentlyReading">Currently Reading</option>
-								<option value="wantToRead">Want to Read</option>
-								<option value="read">Read</option>
+								<option value="none" disabled>
+									Move to...
+								</option>
 
-								<option value="none">None</option>
+								{shelves.map(shelf => (
+									<option key={shelf.value} value={shelf.value}>{shelf.title}</option>
+								))}
+
+								<option value={noShelf.value}>{noShelf.title}</option>
 							</select>
 						</div>
 					</div>
 
 					<div className="book-title">{book.title}</div>
-					<div className="book-authors">{book.authors}</div>
+					<div className="book-authors">
+						{book.authors ? book.authors.join(', ') : ''}
+					</div>
 				</div>
 			</li>
 		);

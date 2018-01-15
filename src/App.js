@@ -4,62 +4,58 @@ import {Route} from 'react-router-dom';
 import * as BooksAPI from './utils/BooksAPI';
 import BookShelves from './components/BookShelves';
 import BookSearch from './components/BookSearch';
-
+import {noShelf} from './utils/commonData';
 import Loader from 'react-loaders';
 
 class App extends Component {
 	state = {
 		books: [],
-		query: '',
-		loading: true
+		loading: false
 	};
 
 	componentDidMount() {
-		BooksAPI.getAll().then(books =>
-			this.setState({
-				books,
-				loading: false
-			})
-		);
+		this.toggleLoading();
+
+		BooksAPI.getAll().then(books => {
+			this.setState({books});
+			this.toggleLoading();
+		});
 	}
 
-	/*
-   * Updates the Book shelf
-   */
 	updateBookShelf = (book, shelf) => {
-		this.setState({loading: true});
+		this.toggleLoading();
 
 		BooksAPI.update(book, shelf).then(
 			response => {
 				book.shelf = shelf;
 
-				BooksAPI.getAll().then(books =>
-					this.setState({
-						books,
-						loading: false
-					})
-				);
-			},
-			error => {}
-		);
-	};
-
-	searchBooks = query => {
-		this.setState({loading: true});
-
-		BooksAPI.search(query).then(
-			response => {
-				if (response.length) {
-					this.setState({books: response, loading: false});
-				} else {
-					this.setState({loading: false});
-				}
+				BooksAPI.getAll().then(books => {
+					this.toggleLoading();
+					this.setState({books});
+				});
 			},
 			error => {
-				this.setState({loading: false});
+				this.toggleLoading();
 			}
 		);
 	};
+
+	toggleLoading = () => {
+		this.setState(prevState => ({loading: !prevState.loading}));
+	};
+
+	setBookShelf = (book) => {
+		const {books} = this.state;
+		const id = book.id;
+
+		let myBook = books.find(book => book.id === id);
+
+		if(myBook) {
+			book.shelf = myBook.shelf;
+		} else {
+			book.shelf = noShelf.value;
+		}
+	}
 
 	render() {
 		const {loading, books} = this.state;
@@ -81,9 +77,9 @@ class App extends Component {
 					path="/search"
 					render={() => (
 						<BookSearch
-							onSearchBooks={this.searchBooks}
-							books={books}
 							onUpdateBookShelf={this.updateBookShelf}
+							toggleLoading={this.toggleLoading}
+							setBookShelf={this.setBookShelf}
 						/>
 					)}
 				/>
