@@ -11,7 +11,8 @@ class BookShelves extends Component {
 	};
 
 	filterShelfBooks = value => {
-		return this.props.books.filter(book => book.shelf === value);
+		const {books} = this.props;
+		return books ? books.filter(book => book.shelf === value) : [];
 	};
 
 	render() {
