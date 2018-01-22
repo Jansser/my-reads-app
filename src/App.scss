@@ -13,7 +13,8 @@ html {
 
 html,
 body,
-.root {
+.root,
+.app {
 	height: 100%;
 }
 
@@ -44,7 +45,6 @@ body,
 	color: white;
 }
 
-
 .list-books-content {
 	position: relative;
 
@@ -68,8 +68,9 @@ body,
 }
 
 .bookshelf:first-child::before {
-    width: 95.7%;
-    height: 70%;
+    width: 94%;
+	height: 22%;
+	
     content: "";
     
     background: transparent;
@@ -88,7 +89,8 @@ body,
 	padding-top: 50px;
 }
 
-.bookshelf {
+.bookshelf,
+.search-books-results {
 	margin: 0 auto;
 
     background: #fb9e26;
@@ -99,6 +101,23 @@ body,
     box-shadow: inset 25px 0px 25px -25px rgba(0, 0, 0, 0.45), inset -25px 0px 25px -25px rgba(0, 0, 0, 0.45);
 }
 
+.bookshelf-title {
+	background: white;
+	text-align: center;
+	margin: 0 20px;
+	padding: 4px;
+	box-shadow: 0px 0px 10px -2px black;
+}
+
+.bookshelf-title h2 {
+	margin: 0;
+	font-size: 1.4em;
+}
+
+.bookshelf {
+	padding-top: 40px;
+}	
+
 @media (min-width: 600px) {
 	.bookshelf {
 		padding: 0 20px 40px;
@@ -106,20 +125,24 @@ body,
 		width: 92.8%;
 		margin: 0 auto;
 	}
+
+	.bookshelf:first-child::before {
+		width: 95.7%;
+		height: 70%;
+	}
+
+	.bookshelf-title {
+		width: 18%;
+		margin: 0;
+		padding: 10px;
+	}
+	
+	.bookshelf-title h2 {
+		margin: 0;
+	}
 }
 
-.bookshelf-title {
-	width: 18%;
-	background: white;
-	text-align: center;
-	padding: 10px;
-	box-shadow: 0px 0px 10px -2px black;
-}
 
-.bookshelf-title h2 {
-	margin: 0;
-	/* border-bottom: 1px solid #dedede; */
-}
 
 .bookshelf-books {
 	text-align: center;
@@ -147,6 +170,9 @@ body,
 }
 
 /* search page */
+.search-books {
+	height: 100%;
+}
 
 .search-books-bar {
 	position: fixed;
@@ -187,6 +213,7 @@ body,
 
 .search-books-results {
 	padding: 80px 10px 20px;
+	height: 100%;
 }
 
 /* books grid */
@@ -202,37 +229,48 @@ body,
 	flex-wrap: wrap;
 	width: 70%;
 
-	
-	z-index: 10;
+	z-index: 1;
 }
 
 .books-grid li {
+	display: block;
 	padding: 10px 15px;
 	text-align: left;
-	z-index: 5;
 }
 
-.books-grid li:nth-child(-5n+1)::after,
-.books-grid li:last-child::after {
+.books-grid li.shelf:nth-child(-5n+1)::after,
+.books-grid li.shelf:last-child::after {
 	content: "";
-	
 	background: url("./images/shelf.png"); 
     background-repeat: no-repeat;
     background-position: top;
-    background-size: 100% 80%;
 
+
+	background-size: 100% 80%;
+    width: 140%;
+    height: 10%;
+    margin-top: 40px;
 	position: absolute;
-	width: 110%;
-    height: 30%;
+	
     left: 50%;
-	z-index: 0;
-	margin-top: 40px;
 	transform: translate(-50%, -50%);
+	
+	z-index: -1;
 }
 
-.books-grid li:nth-child(4)::after {
-	height: 45%;
-	background-size: 100% 96%;
+@media (min-width: 600px) {
+	.books-grid li.shelf:nth-child(-5n+1)::after,
+	.books-grid li.shelf:last-child::after {
+		background-size: 100% 80%;
+		width: 110%;
+		height: 30%;
+		margin-top: 40px;
+	}
+
+	.books-grid li.shelf:nth-child(4)::after {
+		height: 45%;
+		background-size: 100% 96%;
+	}	
 }
 
 .book {

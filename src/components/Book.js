@@ -18,34 +18,34 @@ class Book extends Component {
 		const {book} = this.props;
 
 		return (
-			<li>
-				<div className="book">
-					<div className="book-top">
-						<div
-							className="book-cover"
-							style={{
-								width: 128,
-								height: 193,
-								backgroundImage: `url("${book.imageLinks.smallThumbnail}")`
-							}}
-						/>
+			<div className="book">
+				<div className="book-top">
+					<div
+						className="book-cover"
+						style={{
+							width: 128,
+							height: 193,
+							backgroundImage: `url("${book.imageLinks.smallThumbnail}")`
+						}}
+					/>
 
-						<div className="book-shelf-changer">
-							<select value={book.shelf} onChange={this.handleChange}>
-								<option value="none" disabled>
-									Move to...
+					<div className="book-shelf-changer">
+						<select value={book.shelf} onChange={this.handleChange}>
+							<option value="none" disabled>
+								Move to...
+							</option>
+
+							{shelves.map(shelf => (
+								<option key={shelf.value} value={shelf.value}>
+									{shelf.title}
 								</option>
+							))}
 
-								{shelves.map(shelf => (
-									<option key={shelf.value} value={shelf.value}>{shelf.title}</option>
-								))}
-
-								<option value={noShelf.value}>{noShelf.title}</option>
-							</select>
-						</div>
+							<option value={noShelf.value}>{noShelf.title}</option>
+						</select>
 					</div>
 				</div>
-			</li>
+			</div>
 		);
 	}
 }

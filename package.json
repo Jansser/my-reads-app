@@ -37,7 +37,8 @@
   "prettier": {
     "singleQuote": true,
     "useTabs": true,
-    "bracketSpacing": false
+    "bracketSpacing": false,
+    "tabWidth": 2
   },
   "lint-staged": {
     "src/**/*.{js,json,scss}": [
