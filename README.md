@@ -1,22 +1,18 @@
 # MyReads
 
-One Paragraph of project description goes here
+A bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. The project was created for the React Nanodegree program
+and emphasizes using React to build the application.
 
-## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+### Getting Started
 
 ```
-git clone ...
+git clone https://github.com/Jansser/my-reads-app.git
 ```
 
 ```
+cd myreads
+
 npm install
 ```
 
@@ -24,7 +20,7 @@ npm install
 npm start
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+![alt text](screenshots/app_screen.png "Main page")
 
 ## Running the tests
 
@@ -32,26 +28,8 @@ End with an example of getting some data out of the system or using it for a lit
 npm test
 ```
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+```
+npm build
+```

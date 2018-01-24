@@ -1,4 +1,4 @@
-$primary-color: #2e7c31;
+$primary-color: #2f3649;
 @import 'loaders.css/src/animations/pacman.scss';
 
 html {
@@ -34,7 +34,7 @@ body,
 
 .list-books-title {
 	padding: 10px 0;
-	background: #2e7c31;
+	background: $primary-color;
 	text-align: center;
 	margin-bottom: 40px;
 }
@@ -159,7 +159,7 @@ body,
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	background: #2e7d32;
+	background: white;
 	background-image: url('./icons/search.svg');
 	background-repeat: no-repeat;
 	background-position: center;
@@ -304,7 +304,7 @@ body,
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	background: #60ac5d;
+	background: $primary-color;
 	background-image: url('./icons/arrow-drop-down.svg');
 	background-repeat: no-repeat;
 	background-position: center;
@@ -348,6 +348,7 @@ body,
 .loader-active {
 	display: block;
 	position: fixed;
+	z-index: 100;
 	@include center-both-vertical-horizontal();
 }
 
