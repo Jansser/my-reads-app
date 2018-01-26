@@ -333,6 +333,21 @@ body,
 	font-size: 0.8em;
 }
 
+.book-star-rating {
+	position: absolute;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	font-size: 1.27em;
+	opacity: 0.8;
+	padding: 0 5px;
+    height: 15%;
+}
+
+.dv-star-rating-empty-star {
+	color: white;
+}
+
 /* Loader */
 
 @mixin center-both-vertical-horizontal() {

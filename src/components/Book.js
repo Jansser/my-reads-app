@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import StarRatingComponent from 'react-star-rating-component';
 import {shelves, noShelf} from '../utils/commonData';
+import {getRating, updateRate} from '../utils/BooksAPI';
 
 class Book extends Component {
 	static propTypes = {
@@ -8,14 +10,31 @@ class Book extends Component {
 		onUpdateBookShelf: PropTypes.func.isRequired
 	};
 
+	state = {
+		rate: 0
+	};
+
+	componentDidMount() {
+		let {book} = this.props;
+		const rate = getRating(book);
+		this.setState({rate});
+	}
+
 	handleChange = event => {
 		const {book, onUpdateBookShelf} = this.props;
 		event.preventDefault();
 		onUpdateBookShelf(book, event.target.value);
 	};
 
+	handleRateChange = rate => {
+		const {book} = this.props;
+		updateRate(book, rate);
+		this.setState({rate});
+	};
+
 	render() {
 		const {book} = this.props;
+		const {rate} = this.state;
 
 		return (
 			<div className="book">
@@ -27,7 +46,16 @@ class Book extends Component {
 							height: 193,
 							backgroundImage: `url("${book.imageLinks.smallThumbnail}")`
 						}}
-					/>
+					>
+						<div className="book-star-rating">
+							<StarRatingComponent
+								name={`rate-${book.id}`}
+								value={rate}
+								onStarClick={this.handleRateChange}
+								emptyStarColor={'silver'}
+							/>
+						</div>
+					</div>
 
 					<div className="book-shelf-changer">
 						<select value={book.shelf} onChange={this.handleChange}>

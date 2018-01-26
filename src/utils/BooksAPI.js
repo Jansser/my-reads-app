@@ -44,3 +44,32 @@ export const search = query =>
   })
     .then(res => res.json())
     .then(data => data.books);
+
+export const getAllRatings = () => {
+  let ratings = JSON.parse(localStorage.getItem('ratings'));
+
+  if(ratings === null) {
+    ratings = {};
+    localStorage.setItem('ratings', JSON.stringify(ratings))
+  }
+
+  return ratings;
+}
+
+export const updateRate = (book, rate) => {
+  let ratings = getAllRatings();
+  ratings[book.id] = rate;
+
+  localStorage.setItem('ratings', JSON.stringify(ratings));
+}
+
+export const getRating = (book) => {
+	const ratings = getAllRatings();
+  const id = book.id;
+
+  if(ratings[id]) {
+    return ratings[id]
+  } else {
+    return 0;
+  }
+};

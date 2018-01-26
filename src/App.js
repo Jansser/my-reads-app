@@ -22,7 +22,7 @@ class App extends Component {
 		});
 	}
 
-	updateBookShelf = (book, shelf) => {
+	updateBookShelf = (book, shelf, rate) => {
 		this.toggleLoading();
 
 		BooksAPI.update(book, shelf).then(
@@ -31,7 +31,6 @@ class App extends Component {
 
 				BooksAPI.getAll().then(books => {
 					this.toggleLoading();
-					this.setState({books});
 				});
 			},
 			error => {
@@ -44,18 +43,18 @@ class App extends Component {
 		this.setState(prevState => ({loading: !prevState.loading}));
 	};
 
-	setBookShelf = (book) => {
+	setBookShelf = book => {
 		const {books} = this.state;
 		const id = book.id;
 
 		let myBook = books.find(book => book.id === id);
 
-		if(myBook) {
+		if (myBook) {
 			book.shelf = myBook.shelf;
 		} else {
 			book.shelf = noShelf.value;
 		}
-	}
+	};
 
 	render() {
 		const {loading, books} = this.state;
