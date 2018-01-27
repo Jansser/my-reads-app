@@ -31,6 +31,8 @@ class App extends Component {
 
 				BooksAPI.getAll().then(books => {
 					this.toggleLoading();
+
+					this.setState({books});
 				});
 			},
 			error => {

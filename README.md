@@ -19,7 +19,7 @@ npm install
 ```
 npm start
 ```
-You can find a live version at https://my-reads-app-jansser-wkwjzsxesk.now.sh/
+You can find a live version at  https://my-reads-app-jansser-fqvpxptnca.now.sh
 
 ![alt text](screenshots/app_screen.png "Main page")
 
