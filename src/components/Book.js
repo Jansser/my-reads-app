@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import StarRatingComponent from 'react-star-rating-component';
 import {shelves, noShelf} from '../utils/commonData';
 import {getRating, updateRate} from '../utils/BooksAPI';
+import noBookCover from '../images/no_book_cover.png';
 
 class Book extends Component {
 	static propTypes = {
@@ -35,6 +36,7 @@ class Book extends Component {
 	render() {
 		const {book} = this.props;
 		const {rate} = this.state;
+		const thumbnail = book.imageLinks ? book.imageLinks.thumbnail : noBookCover;
 
 		return (
 			<div className="book">
@@ -44,7 +46,7 @@ class Book extends Component {
 						style={{
 							width: 128,
 							height: 193,
-							backgroundImage: `url("${book.imageLinks.smallThumbnail}")`
+							backgroundImage: `url("${thumbnail}")`
 						}}
 					>
 						<div className="book-star-rating">
